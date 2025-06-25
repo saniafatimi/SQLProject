@@ -1,0 +1,7 @@
+CREATE TABLE sales_data (
+    sale_date DATE,
+    year INT,
+    month INT,
+    month_name VARCHAR(10),
+    sales INT
+);
