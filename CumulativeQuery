@@ -1,0 +1,26 @@
+SELECT
+    year,
+    month,
+    month_name,
+    sales AS MTD,
+
+    -- QTD: Running total within quarter
+    SUM(sales) OVER (
+        PARTITION BY year, 
+                     CASE 
+                        WHEN month BETWEEN 1 AND 3 THEN 1
+                        WHEN month BETWEEN 4 AND 6 THEN 2
+                        WHEN month BETWEEN 7 AND 9 THEN 3
+                        ELSE 4
+                     END
+        ORDER BY month
+    ) AS QTD,
+
+    -- YTD: Running total within year
+    SUM(sales) OVER (
+        PARTITION BY year
+        ORDER BY month
+    ) AS YTD
+
+FROM sales_data
+ORDER BY year, month;
