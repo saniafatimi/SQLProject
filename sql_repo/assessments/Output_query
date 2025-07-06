@@ -1,0 +1,23 @@
+/*exp: years of experience
+
+max: maximum number of categories with perfect scores for any candidate in that experience group
+
+count: total number of candidates with that experience*/
+
+SELECT
+  experience AS exp,
+  MAX(
+    CASE 
+      WHEN (sql IS NULL OR sql = 100)
+        AND (algo IS NULL OR algo = 100)
+        AND (bug_fixing IS NULL OR bug_fixing = 100)
+      THEN 
+        (CASE WHEN sql IS NOT NULL THEN 1 ELSE 0 END) +
+        (CASE WHEN algo IS NOT NULL THEN 1 ELSE 0 END) +
+        (CASE WHEN bug_fixing IS NOT NULL THEN 1 ELSE 0 END)
+      ELSE 0
+    END
+  ) AS max,
+  COUNT(*) AS count
+FROM Assessments
+GROUP BY experience;
