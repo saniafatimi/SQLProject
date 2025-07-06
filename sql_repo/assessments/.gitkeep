@@ -1,0 +1,15 @@
+For each experience level:
+
+Count how many candidates have that exact experience.
+
+For each candidate, a NULL in sql, algo, or bug_fixing means they were not assessed in that skill and should be treated as perfect in that category.
+
+A perfect score is 100 or NULL (interpreted as perfect).
+
+For each experience level, determine:
+
+Total number of assessments (candidates)
+
+For each candidate, count how many categories they achieved perfect scores in which they were assessed.
+
+Find the maximum such count for that experience level.
